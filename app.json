@@ -1,0 +1,70 @@
+{
+  "name": "Scrape-Members",
+  "description": "Helps To add Members To Your Group.",
+  "keywords": [
+    "productivity",
+    "HTML5",
+    "scalpel"
+  ],
+  "website": "https://SydPewer.data.blog",
+  "repository": "https://github.com/SydPewer/Scrape-Member",
+  "logo": "https://telegra.ph/file/0248ea531cf0ac20d6a6a.jpg",
+  "success_url": "/welcome",
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  },
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Get Token From @botfather.",
+      "value": ""
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Your API HASH From my.telegram.org.",
+      "value": ""
+      "required": true
+    },
+    "API_KEY": {
+      "description": "Your API Key From my.telegram.org.",
+      "value": "5"
+      "required": true
+    },
+    "STRING_SESSION": {
+      "description": "Gen String From [link in repo].",
+      "value": "5"
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    "openredis",
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    },
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
